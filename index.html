@@ -138,12 +138,45 @@
       gap: 10px;
     }
 
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(180deg, var(--accent), var(--accent-2));
-      box-shadow: 0 0 0 6px rgba(127, 141, 255, 0.18);
+    .section-icon {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      border: 1px solid #d5e4f8;
+      background: #f4f9ff;
+      color: #2f5fe6;
+      flex-shrink: 0;
+    }
+
+    .section-icon svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .section-icon--employee {
+      color: #2f5fe6;
+      background: #eef4ff;
+      border-color: #d7e4ff;
+    }
+
+    .section-icon--service {
+      color: #0fa27c;
+      background: #ecfbf6;
+      border-color: #c9f3e7;
+    }
+
+    .section-icon--family {
+      color: #7b49d5;
+      background: #f3eefe;
+      border-color: #e1d4fb;
     }
 
     .desc {
@@ -437,7 +470,15 @@
 
       <section class="section">
         <header class="section-header">
-          <h2 class="section-title"><span class="dot"></span>员工投保专区</h2>
+          <h2 class="section-title">
+            <span class="section-icon section-icon--employee" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"></path>
+                <path d="M4 20a8 8 0 0 1 16 0"></path>
+              </svg>
+            </span>
+            员工投保专区
+          </h2>
           <p class="desc">员工：员工一 ｜ 支持设置保障区间、赔付额度与健康服务组合</p>
         </header>
 
@@ -510,7 +551,14 @@
 
       <section class="section">
         <header class="section-header">
-          <h2 class="section-title"><span class="dot"></span>健康服务预约</h2>
+          <h2 class="section-title">
+            <span class="section-icon section-icon--service" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 12h4l2.2-4 3.6 8 2.2-4H21"></path>
+              </svg>
+            </span>
+            健康服务预约
+          </h2>
           <p class="desc">可叠加企业健康服务包，按勾选项自动计入全年费用</p>
         </header>
 
@@ -540,7 +588,17 @@
 
       <section class="section">
         <header class="section-header">
-          <h2 class="section-title"><span class="dot"></span>家属投保专区</h2>
+          <h2 class="section-title">
+            <span class="section-icon section-icon--family" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M16.5 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"></path>
+                <path d="M7.5 13a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"></path>
+                <path d="M3.5 20a5 5 0 0 1 8 0"></path>
+                <path d="M12.5 20a6 6 0 0 1 8 0"></path>
+              </svg>
+            </span>
+            家属投保专区
+          </h2>
           <div class="tabs" role="tablist" aria-label="家属切换">
             <button type="button" class="tab active" data-member="member-1">一亲属</button>
             <button type="button" class="tab" data-member="member-2">二亲属</button>
