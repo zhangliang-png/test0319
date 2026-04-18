@@ -6,19 +6,19 @@
   <title>企业投保中心</title>
   <style>
     :root {
-      --bg-1: #f9fbff;
-      --bg-2: #f1f5ff;
-      --bg-3: #eef2ff;
-      --card-bg: rgba(255, 255, 255, 0.88);
-      --card-border: rgba(123, 141, 228, 0.22);
-      --text-main: #1d2b4d;
-      --text-muted: #60729d;
-      --accent: #1ac0de;
-      --accent-2: #6675ff;
-      --success: #1d9f72;
-      --warning: #e09b17;
-      --danger: #d84857;
-      --shadow: 0 16px 42px rgba(66, 84, 160, 0.14);
+      --bg-1: #ffffff;
+      --bg-2: #f8fbff;
+      --bg-3: #f3f8ff;
+      --card-bg: #ffffff;
+      --card-border: #d9e5f6;
+      --text-main: #1f2937;
+      --text-muted: #66758f;
+      --accent: #19b6d3;
+      --accent-2: #5a78ff;
+      --success: #1e9d71;
+      --warning: #d88e00;
+      --danger: #d63d56;
+      --shadow: 0 10px 28px rgba(45, 87, 148, 0.1);
       --radius: 18px;
     }
 
@@ -32,8 +32,8 @@
       color: var(--text-main);
       min-height: 100vh;
       background:
-        radial-gradient(circle at 8% 12%, rgba(26, 192, 222, 0.14) 0%, rgba(249, 251, 255, 0) 28%),
-        radial-gradient(circle at 88% 8%, rgba(102, 117, 255, 0.15) 0%, rgba(249, 251, 255, 0) 32%),
+        radial-gradient(circle at 8% 12%, rgba(26, 192, 222, 0.08) 0%, rgba(255, 255, 255, 0) 30%),
+        radial-gradient(circle at 88% 8%, rgba(102, 117, 255, 0.09) 0%, rgba(255, 255, 255, 0) 32%),
         linear-gradient(155deg, var(--bg-1) 0%, var(--bg-2) 48%, var(--bg-3) 100%);
       padding: 32px 20px 40px;
     }
@@ -52,8 +52,6 @@
       background: var(--card-bg);
       border-radius: 24px;
       box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
     }
 
     .main-panel {
@@ -75,8 +73,8 @@
       margin-bottom: 24px;
       padding: 22px 24px;
       border-radius: var(--radius);
-      background: linear-gradient(130deg, rgba(26, 192, 222, 0.14), rgba(102, 117, 255, 0.12));
-      border: 1px solid rgba(123, 141, 228, 0.28);
+      background: linear-gradient(130deg, #f3fbff, #f2f5ff);
+      border: 1px solid #d4e4f7;
     }
 
     .hero h1 {
@@ -119,8 +117,8 @@
       margin-top: 26px;
       padding: 20px;
       border-radius: var(--radius);
-      border: 1px solid rgba(123, 141, 228, 0.2);
-      background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(247, 250, 255, 0.9));
+      border: 1px solid #d9e5f6;
+      background: #ffffff;
     }
 
     .section-header {
@@ -163,8 +161,8 @@
     .plan-card {
       border-radius: 14px;
       padding: 16px;
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid rgba(123, 141, 228, 0.2);
+      background: #ffffff;
+      border: 1px solid #dbe7f7;
       display: grid;
       gap: 12px;
     }
@@ -212,10 +210,10 @@
     .field select {
       width: 100%;
       color: var(--text-main);
-      border: 1px solid rgba(123, 141, 228, 0.28);
+      border: 1px solid #ccdaef;
       border-radius: 10px;
       padding: 9px 10px;
-      background: rgba(255, 255, 255, 0.96);
+      background: #ffffff;
       outline: none;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
@@ -254,8 +252,8 @@
       align-items: center;
       padding: 11px 12px;
       border-radius: 12px;
-      border: 1px solid rgba(123, 141, 228, 0.22);
-      background: rgba(246, 249, 255, 0.95);
+      border: 1px solid #d9e5f6;
+      background: #ffffff;
     }
 
     .service-item input {
@@ -278,8 +276,8 @@
       display: inline-flex;
       padding: 4px;
       border-radius: 999px;
-      background: rgba(242, 246, 255, 0.95);
-      border: 1px solid rgba(123, 141, 228, 0.3);
+      background: #f4f8ff;
+      border: 1px solid #d6e3f6;
       gap: 6px;
     }
 
@@ -314,8 +312,8 @@
 
     .summary-block {
       border-radius: 14px;
-      border: 1px solid rgba(123, 141, 228, 0.24);
-      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #d9e5f6;
+      background: #ffffff;
       padding: 14px 14px 8px;
       margin-bottom: 12px;
     }
@@ -327,7 +325,7 @@
       padding: 8px 0;
       font-size: 14px;
       color: var(--text-main);
-      border-bottom: 1px dashed rgba(123, 141, 228, 0.2);
+      border-bottom: 1px dashed #d9e5f6;
     }
 
     .summary-row:last-child {
@@ -378,8 +376,8 @@
 
     .btn-secondary {
       color: #42527f;
-      background: rgba(240, 244, 255, 0.9);
-      border: 1px solid rgba(123, 141, 228, 0.28);
+      background: #ffffff;
+      border: 1px solid #d2def2;
     }
 
     .tip {
@@ -431,7 +429,7 @@
           <h1>企业保障投保中心</h1>
           <p>
             将员工保障与家属保障统一在一个数字化页面中管理，支持实时保费测算、健康服务预约与分角色方案配置。
-            视觉采用深色科技感主题，信息密度高但层级清晰，便于快速决策。
+            视觉采用浅色清晰主题，信息密度高但层级清晰，便于快速决策。
           </p>
         </div>
         <span class="badge">保障方案已智能校验</span>
