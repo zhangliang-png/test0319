@@ -67,28 +67,111 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
-      align-items: center;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 18px;
+      align-items: stretch;
       margin-bottom: 24px;
       padding: 22px 24px;
       border-radius: var(--radius);
-      background: linear-gradient(130deg, #f3fbff, #f2f5ff);
+      background: linear-gradient(145deg, #f4fbff, #f2f6ff);
       border: 1px solid #d4e4f7;
+    }
+
+    .hero-content {
+      display: grid;
+      gap: 10px;
+      align-content: center;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      background: #eaf3ff;
+      color: #3054ad;
+      border: 1px solid #d3e3fb;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 10px;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #3d6aff;
     }
 
     .hero h1 {
       margin: 0;
-      font-size: 28px;
-      letter-spacing: 0.5px;
+      font-size: 30px;
+      line-height: 1.2;
+      letter-spacing: 0.3px;
+      color: #182743;
     }
 
-    .hero p {
-      margin: 8px 0 0;
+    .hero-desc {
+      margin: 0;
       color: var(--text-muted);
-      line-height: 1.55;
+      line-height: 1.62;
       font-size: 14px;
       max-width: 66ch;
+    }
+
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .hero-point {
+      font-size: 12px;
+      color: #34507e;
+      border-radius: 999px;
+      border: 1px solid #d3e3fa;
+      background: #f8fbff;
+      padding: 5px 10px;
+    }
+
+    .hero-side {
+      border: 1px solid #d4e4f7;
+      border-radius: 14px;
+      background: linear-gradient(160deg, #ffffff, #f6f9ff);
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .hero-stats {
+      display: grid;
+      gap: 8px;
+    }
+
+    .hero-stat {
+      border-radius: 10px;
+      border: 1px solid #deebfb;
+      background: #ffffff;
+      padding: 8px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .hero-stat span {
+      font-size: 12px;
+      color: #63779f;
+    }
+
+    .hero-stat strong {
+      font-size: 15px;
+      color: #20325c;
+      white-space: nowrap;
     }
 
     .badge {
@@ -102,6 +185,7 @@
       padding: 8px 14px;
       background: rgba(26, 192, 222, 0.16);
       white-space: nowrap;
+      width: fit-content;
     }
 
     .badge::before {
@@ -445,6 +529,14 @@
         grid-template-columns: 1fr;
       }
 
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .hero-side {
+        padding: 10px;
+      }
+
       .section {
         padding: 14px;
       }
@@ -459,14 +551,36 @@
   <div class="page">
     <main class="main-panel">
       <section class="hero">
-        <div>
+        <div class="hero-content">
+          <span class="hero-kicker">企业团险一站式管理</span>
           <h1>企业保障投保中心</h1>
-          <p>
+          <p class="hero-desc">
             将员工保障与家属保障统一在一个数字化页面中管理，支持实时保费测算、健康服务预约与分角色方案配置。
-            视觉采用浅色清晰主题，信息密度高但层级清晰，便于快速决策。
+            采用浅色高可读布局，帮助人事、行政和员工快速理解保障范围与费用结构。
           </p>
+          <div class="hero-points">
+            <span class="hero-point">实时保费联动</span>
+            <span class="hero-point">多角色保障配置</span>
+            <span class="hero-point">费用结构清晰展示</span>
+          </div>
         </div>
-        <span class="badge">保障方案已智能校验</span>
+        <aside class="hero-side" aria-label="方案状态信息">
+          <span class="badge">保障方案已智能校验</span>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span>当前投保角色</span>
+              <strong>员工 + 家属</strong>
+            </div>
+            <div class="hero-stat">
+              <span>已覆盖保障模块</span>
+              <strong>医疗 + 重疾 + 服务</strong>
+            </div>
+            <div class="hero-stat">
+              <span>价格刷新状态</span>
+              <strong>自动实时计算</strong>
+            </div>
+          </div>
+        </aside>
       </section>
 
       <section class="section">
