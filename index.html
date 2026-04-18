@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>企业投保中心</title>
+  <style>
+    :root {
+      --bg-1: #090d1f;
+      --bg-2: #121a3e;
+      --bg-3: #231c52;
+      --card-bg: rgba(14, 18, 42, 0.68);
+      --card-border: rgba(145, 160, 255, 0.22);
+      --text-main: #eef3ff;
+      --text-muted: #a9b4d6;
+      --accent: #73f1ff;
+      --accent-2: #7f8dff;
+      --success: #44f0b8;
+      --warning: #ffb85c;
+      --danger: #ff6f8e;
+      --shadow: 0 24px 60px rgba(6, 8, 18, 0.45);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+      color: var(--text-main);
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(115, 241, 255, 0.2) 0%, rgba(9, 13, 31, 0) 28%),
+        radial-gradient(circle at 85% 10%, rgba(127, 141, 255, 0.25) 0%, rgba(9, 13, 31, 0) 35%),
+        linear-gradient(155deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
+      padding: 32px 20px 40px;
+    }
+
+    .page {
+      width: min(1280px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.65fr 0.9fr;
+      gap: 22px;
+    }
+
+    .main-panel,
+    .summary-panel {
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .main-panel {
+      padding: 28px;
+    }
+
+    .summary-panel {
+      position: sticky;
+      top: 20px;
+      height: fit-content;
+      padding: 24px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 22px 24px;
+      border-radius: var(--radius);
+      background: linear-gradient(130deg, rgba(115, 241, 255, 0.18), rgba(127, 141, 255, 0.18));
+      border: 1px solid rgba(140, 219, 255, 0.35);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero p {
+      margin: 8px 0 0;
+      color: var(--text-muted);
+      line-height: 1.55;
+      font-size: 14px;
+      max-width: 66ch;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(121, 240, 255, 0.6);
+      color: #d5fbff;
+      font-size: 13px;
+      padding: 8px 14px;
+      background: rgba(5, 148, 171, 0.26);
+      white-space: nowrap;
+    }
+
+    .badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 6px rgba(68, 240, 184, 0.2);
+    }
+
+    .section {
+      margin-top: 26px;
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(178, 193, 255, 0.18);
+      background: linear-gradient(160deg, rgba(35, 41, 79, 0.58), rgba(15, 20, 47, 0.64));
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 6px rgba(127, 141, 255, 0.18);
+    }
+
+    .desc {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .plan-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .plan-card {
+      border-radius: 14px;
+      padding: 16px;
+      background: rgba(15, 20, 44, 0.82);
+      border: 1px solid rgba(187, 203, 255, 0.16);
+      display: grid;
+      gap: 12px;
+    }
+
+    .plan-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .plan-head h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .plan-tag {
+      font-size: 12px;
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid rgba(127, 141, 255, 0.45);
+      color: #d6dcff;
+      background: rgba(52, 63, 121, 0.4);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      align-items: end;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field label {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      color: var(--text-main);
+      border: 1px solid rgba(150, 169, 248, 0.3);
+      border-radius: 10px;
+      padding: 9px 10px;
+      background: rgba(8, 13, 35, 0.76);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(115, 241, 255, 0.18);
+    }
+
+    .price-inline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 0 2px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .price-inline strong {
+      color: var(--warning);
+      font-size: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .services {
+      display: grid;
+      gap: 10px;
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 11px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(150, 169, 248, 0.22);
+      background: rgba(6, 10, 28, 0.5);
+    }
+
+    .service-item input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent);
+    }
+
+    .service-item span {
+      font-size: 14px;
+    }
+
+    .service-item em {
+      font-style: normal;
+      color: #c8d6ff;
+      font-size: 13px;
+    }
+
+    .tabs {
+      display: inline-flex;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(8, 12, 31, 0.8);
+      border: 1px solid rgba(132, 150, 237, 0.35);
+      gap: 6px;
+    }
+
+    .tab {
+      border: 0;
+      border-radius: 999px;
+      color: #c7d2ff;
+      background: transparent;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .tab.active {
+      color: #051029;
+      background: linear-gradient(160deg, var(--accent), #b4f8ff);
+      font-weight: 700;
+    }
+
+    .summary-panel h2 {
+      margin: 0 0 6px;
+      font-size: 22px;
+    }
+
+    .summary-panel p {
+      margin: 0 0 16px;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .summary-block {
+      border-radius: 14px;
+      border: 1px solid rgba(147, 164, 243, 0.3);
+      background: rgba(8, 12, 31, 0.8);
+      padding: 14px 14px 8px;
+      margin-bottom: 12px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      font-size: 14px;
+      color: #dce4ff;
+      border-bottom: 1px dashed rgba(145, 160, 255, 0.18);
+    }
+
+    .summary-row:last-child {
+      border-bottom: 0;
+    }
+
+    .summary-row.total {
+      font-size: 17px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .value-danger {
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    .value-success {
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      font-weight: 700;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      color: #07112f;
+      background: linear-gradient(160deg, #8ff7ff, #9db2ff);
+      box-shadow: 0 12px 26px rgba(115, 241, 255, 0.24);
+    }
+
+    .btn-secondary {
+      color: #d6e0ff;
+      background: rgba(48, 61, 120, 0.46);
+      border: 1px solid rgba(150, 169, 248, 0.28);
+    }
+
+    .tip {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #9fb0dd;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 1080px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 16px 12px 22px;
+      }
+
+      .main-panel,
+      .summary-panel {
+        padding: 16px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 14px;
+      }
+
+      .row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <main class="main-panel">
+      <section class="hero">
+        <div>
+          <h1>企业保障投保中心</h1>
+          <p>
+            将员工保障与家属保障统一在一个数字化页面中管理，支持实时保费测算、健康服务预约与分角色方案配置。
+            视觉采用深色科技感主题，信息密度高但层级清晰，便于快速决策。
+          </p>
+        </div>
+        <span class="badge">保障方案已智能校验</span>
+      </section>
+
+      <section class="section">
+        <header class="section-header">
+          <h2 class="section-title"><span class="dot"></span>员工投保专区</h2>
+          <p class="desc">员工：员工一 ｜ 支持设置保障区间、赔付额度与健康服务组合</p>
+        </header>
+
+        <div class="plan-grid">
+          <article class="plan-card">
+            <div class="plan-head">
+              <h3>东方嘉富团体B款重大疾病保险</h3>
+              <span class="plan-tag">重大疾病保险金</span>
+            </div>
+            <div class="row">
+              <div class="field">
+                <label for="employee-critical-amount">保额（元）</label>
+                <input id="employee-critical-amount" type="number" min="10000" max="1000000" step="10000" value="100000">
+              </div>
+              <div class="field">
+                <label for="employee-critical-pay">投保频次（次/年）</label>
+                <select id="employee-critical-pay">
+                  <option value="1">1 次</option>
+                  <option value="2">2 次</option>
+                  <option value="4">4 次</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="employee-critical-term">保障年限</label>
+                <select id="employee-critical-term">
+                  <option value="1">1 年</option>
+                  <option value="2">2 年</option>
+                  <option value="3">3 年</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="employee-critical-company-rate">公司共付比例（%）</label>
+                <input id="employee-critical-company-rate" type="number" min="0" max="100" value="0">
+              </div>
+            </div>
+            <div class="price-inline">预计保费 <strong id="employee-critical-price">¥ 30.60</strong></div>
+          </article>
+
+          <article class="plan-card">
+            <div class="plan-head">
+              <h3>东方嘉富团体雇主补偿医疗保险（门急诊医疗）</h3>
+              <span class="plan-tag">门急诊医疗保险金</span>
+            </div>
+            <div class="row">
+              <div class="field">
+                <label for="employee-medical-coverage">赔付限额（元）</label>
+                <input id="employee-medical-coverage" type="number" min="5000" max="100000" step="1000" value="20000">
+              </div>
+              <div class="field">
+                <label for="employee-medical-deductible">免赔额（元）</label>
+                <input id="employee-medical-deductible" type="number" min="0" step="100" value="2000">
+              </div>
+              <div class="field">
+                <label for="employee-medical-installments">先赔额（次）</label>
+                <select id="employee-medical-installments">
+                  <option value="50">50</option>
+                  <option value="100" selected>100</option>
+                  <option value="150">150</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="employee-medical-company-rate">公司共付比例（%）</label>
+                <input id="employee-medical-company-rate" type="number" min="0" max="100" value="0">
+              </div>
+            </div>
+            <div class="price-inline">预计保费 <strong id="employee-medical-price">¥ 200.00</strong></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <header class="section-header">
+          <h2 class="section-title"><span class="dot"></span>健康服务预约</h2>
+          <p class="desc">可叠加企业健康服务包，按勾选项自动计入全年费用</p>
+        </header>
+
+        <div class="services">
+          <label class="service-item">
+            <input type="checkbox" id="service-basic" checked>
+            <span>易保健康 · 非指定专家门诊预约</span>
+            <em>¥ 320 / 次（默认 3 次）</em>
+          </label>
+          <label class="service-item">
+            <input type="checkbox" id="service-targeted">
+            <span>易保健康 · 指定专家门诊预约</span>
+            <em>¥ 650 / 次（默认 1 次）</em>
+          </label>
+          <label class="service-item">
+            <input type="checkbox" id="service-hospitalization">
+            <span>易保健康 · 住院手术支持</span>
+            <em>¥ 1200 / 次（默认 1 次）</em>
+          </label>
+          <label class="service-item">
+            <input type="checkbox" id="service-chinese">
+            <span>中医药健康 · 问诊 + 中药调理</span>
+            <em>¥ 299 / 年</em>
+          </label>
+        </div>
+      </section>
+
+      <section class="section">
+        <header class="section-header">
+          <h2 class="section-title"><span class="dot"></span>家属投保专区</h2>
+          <div class="tabs" role="tablist" aria-label="家属切换">
+            <button type="button" class="tab active" data-member="member-1">一亲属</button>
+            <button type="button" class="tab" data-member="member-2">二亲属</button>
+            <button type="button" class="tab" data-member="member-3">三亲属</button>
+          </div>
+        </header>
+
+        <div class="plan-grid">
+          <article class="plan-card">
+            <div class="plan-head">
+              <h3>东方嘉富团体B款重大疾病保险（家属）</h3>
+              <span class="plan-tag">家属重疾保障</span>
+            </div>
+            <div class="row">
+              <div class="field">
+                <label for="family-critical-amount">保额（元）</label>
+                <input id="family-critical-amount" type="number" min="10000" max="500000" step="10000" value="100000">
+              </div>
+              <div class="field">
+                <label for="family-critical-pay">投保频次（次/年）</label>
+                <select id="family-critical-pay">
+                  <option value="1">1 次</option>
+                  <option value="2">2 次</option>
+                  <option value="4">4 次</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="family-critical-term">保障年限</label>
+                <select id="family-critical-term">
+                  <option value="1">1 年</option>
+                  <option value="2">2 年</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="family-critical-company-rate">公司共付比例（%）</label>
+                <input id="family-critical-company-rate" type="number" min="0" max="100" value="0">
+              </div>
+            </div>
+            <div class="price-inline">预计保费 <strong id="family-critical-price">¥ 226.00</strong></div>
+          </article>
+
+          <article class="plan-card">
+            <div class="plan-head">
+              <h3>东方嘉富团体雇主补偿医疗保险（家属）</h3>
+              <span class="plan-tag">家属医疗保障</span>
+            </div>
+            <div class="row">
+              <div class="field">
+                <label for="family-medical-coverage">赔付限额（元）</label>
+                <input id="family-medical-coverage" type="number" min="5000" max="100000" step="1000" value="20000">
+              </div>
+              <div class="field">
+                <label for="family-medical-deductible">免赔额（元）</label>
+                <input id="family-medical-deductible" type="number" min="0" step="100" value="2000">
+              </div>
+              <div class="field">
+                <label for="family-medical-installments">先赔额（次）</label>
+                <select id="family-medical-installments">
+                  <option value="50">50</option>
+                  <option value="100" selected>100</option>
+                  <option value="150">150</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="family-medical-company-rate">公司共付比例（%）</label>
+                <input id="family-medical-company-rate" type="number" min="0" max="100" value="0">
+              </div>
+            </div>
+            <div class="price-inline">预计保费 <strong id="family-medical-price">¥ 200.00</strong></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <aside class="summary-panel">
+      <h2>费用概览</h2>
+      <p>所有费用将按“员工 + 健康服务 + 家属”实时汇总。你可以调整任意参数，系统即时输出自付与企业共付金额。</p>
+
+      <div class="summary-block">
+        <div class="summary-row"><span>员工保费合计</span><span id="employee-total">¥ 230.60</span></div>
+        <div class="summary-row"><span>健康服务合计</span><span id="service-total">¥ 960.00</span></div>
+        <div class="summary-row"><span>家属保费合计</span><span id="family-total">¥ 426.00</span></div>
+      </div>
+
+      <div class="summary-block">
+        <div class="summary-row"><span>公司共付金额</span><span class="value-success" id="company-pay">¥ 0.00</span></div>
+        <div class="summary-row total"><span>需自付金额</span><span class="value-danger" id="self-pay">¥ 1616.60</span></div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-primary">确认以上选项</button>
+        <button type="button" class="btn btn-secondary">提交投保方案</button>
+      </div>
+      <p class="tip">
+        提示：本页为交互式设计稿，可直接作为前端页面原型使用。若接入真实接口，只需将计算逻辑替换为后端费率规则并同步字段编码即可。
+      </p>
+    </aside>
+  </div>
+
+  <script>
+    /**
+     * 将数值格式化为人民币金额。
+     * @param {number} amount 金额。
+     * @returns {string} 格式化后的金额字符串。
+     */
+    function formatCurrency(amount) {
+      return `¥ ${amount.toFixed(2)}`;
+    }
+
+    /**
+     * 将输入值安全转换为数字。
+     * @param {string | number} value 输入值。
+     * @returns {number} 转换后的数字，失败时返回 0。
+     */
+    function toNumber(value) {
+      const parsed = Number(value);
+      return Number.isFinite(parsed) ? parsed : 0;
+    }
+
+    /**
+     * 根据重疾险保额估算保费。
+     * @param {number} amount 保障金额。
+     * @param {number} payFrequency 投保频次。
+     * @param {number} term 保障年限。
+     * @param {number} rate 基础费率。
+     * @returns {number} 估算保费。
+     */
+    function calcCriticalPremium(amount, payFrequency, term, rate) {
+      const annualBase = amount * rate;
+      const frequencyFactor = payFrequency === 1 ? 1 : payFrequency === 2 ? 1.03 : 1.08;
+      const termFactor = 1 + (term - 1) * 0.02;
+      return annualBase * frequencyFactor * termFactor;
+    }
+
+    /**
+     * 根据医疗险参数估算保费。
+     * @param {number} coverage 赔付限额。
+     * @param {number} deductible 免赔额。
+     * @param {number} installments 先赔额次数。
+     * @returns {number} 估算保费。
+     */
+    function calcMedicalPremium(coverage, deductible, installments) {
+      const coverageBase = coverage * 0.01;
+      const deductibleFactor = deductible >= 3000 ? 0.92 : deductible >= 2000 ? 1 : 1.08;
+      const installmentFactor = installments >= 150 ? 1.12 : installments >= 100 ? 1 : 0.94;
+      return coverageBase * deductibleFactor * installmentFactor;
+    }
+
+    /**
+     * 计算健康服务总费用。
+     * @returns {number} 健康服务费用。
+     */
+    function calcServiceTotal() {
+      let total = 0;
+      if (document.getElementById("service-basic").checked) {
+        total += 320 * 3;
+      }
+      if (document.getElementById("service-targeted").checked) {
+        total += 650;
+      }
+      if (document.getElementById("service-hospitalization").checked) {
+        total += 1200;
+      }
+      if (document.getElementById("service-chinese").checked) {
+        total += 299;
+      }
+      return total;
+    }
+
+    /**
+     * 按共付比例拆分公司支付与个人支付金额。
+     * @param {number} premium 保费金额。
+     * @param {number} companyRate 公司共付比例。
+     * @returns {{ company: number, self: number }} 支付拆分结果。
+     */
+    function splitPayment(premium, companyRate) {
+      const safeRate = Math.max(0, Math.min(100, companyRate));
+      const company = premium * (safeRate / 100);
+      const self = premium - company;
+      return { company, self };
+    }
+
+    /**
+     * 读取页面输入并完成保费汇总渲染。
+     * @returns {void}
+     */
+    function recalculate() {
+      const employeeCriticalAmount = toNumber(document.getElementById("employee-critical-amount").value);
+      const employeeCriticalPay = toNumber(document.getElementById("employee-critical-pay").value);
+      const employeeCriticalTerm = toNumber(document.getElementById("employee-critical-term").value);
+      const employeeCriticalCompanyRate = toNumber(document.getElementById("employee-critical-company-rate").value);
+
+      const employeeMedicalCoverage = toNumber(document.getElementById("employee-medical-coverage").value);
+      const employeeMedicalDeductible = toNumber(document.getElementById("employee-medical-deductible").value);
+      const employeeMedicalInstallments = toNumber(document.getElementById("employee-medical-installments").value);
+      const employeeMedicalCompanyRate = toNumber(document.getElementById("employee-medical-company-rate").value);
+
+      const familyCriticalAmount = toNumber(document.getElementById("family-critical-amount").value);
+      const familyCriticalPay = toNumber(document.getElementById("family-critical-pay").value);
+      const familyCriticalTerm = toNumber(document.getElementById("family-critical-term").value);
+      const familyCriticalCompanyRate = toNumber(document.getElementById("family-critical-company-rate").value);
+
+      const familyMedicalCoverage = toNumber(document.getElementById("family-medical-coverage").value);
+      const familyMedicalDeductible = toNumber(document.getElementById("family-medical-deductible").value);
+      const familyMedicalInstallments = toNumber(document.getElementById("family-medical-installments").value);
+      const familyMedicalCompanyRate = toNumber(document.getElementById("family-medical-company-rate").value);
+
+      const employeeCriticalPremium = calcCriticalPremium(employeeCriticalAmount, employeeCriticalPay, employeeCriticalTerm, 0.000306);
+      const employeeMedicalPremium = calcMedicalPremium(employeeMedicalCoverage, employeeMedicalDeductible, employeeMedicalInstallments);
+
+      const familyCriticalPremium = calcCriticalPremium(familyCriticalAmount, familyCriticalPay, familyCriticalTerm, 0.00226);
+      const familyMedicalPremium = calcMedicalPremium(familyMedicalCoverage, familyMedicalDeductible, familyMedicalInstallments);
+
+      const employeeCriticalSplit = splitPayment(employeeCriticalPremium, employeeCriticalCompanyRate);
+      const employeeMedicalSplit = splitPayment(employeeMedicalPremium, employeeMedicalCompanyRate);
+      const familyCriticalSplit = splitPayment(familyCriticalPremium, familyCriticalCompanyRate);
+      const familyMedicalSplit = splitPayment(familyMedicalPremium, familyMedicalCompanyRate);
+
+      const serviceTotal = calcServiceTotal();
+      const employeeTotal = employeeCriticalPremium + employeeMedicalPremium;
+      const familyTotal = familyCriticalPremium + familyMedicalPremium;
+
+      const companyPay =
+        employeeCriticalSplit.company +
+        employeeMedicalSplit.company +
+        familyCriticalSplit.company +
+        familyMedicalSplit.company;
+
+      const selfPay =
+        employeeCriticalSplit.self +
+        employeeMedicalSplit.self +
+        familyCriticalSplit.self +
+        familyMedicalSplit.self +
+        serviceTotal;
+
+      document.getElementById("employee-critical-price").textContent = formatCurrency(employeeCriticalPremium);
+      document.getElementById("employee-medical-price").textContent = formatCurrency(employeeMedicalPremium);
+      document.getElementById("family-critical-price").textContent = formatCurrency(familyCriticalPremium);
+      document.getElementById("family-medical-price").textContent = formatCurrency(familyMedicalPremium);
+
+      document.getElementById("employee-total").textContent = formatCurrency(employeeTotal);
+      document.getElementById("service-total").textContent = formatCurrency(serviceTotal);
+      document.getElementById("family-total").textContent = formatCurrency(familyTotal);
+      document.getElementById("company-pay").textContent = formatCurrency(companyPay);
+      document.getElementById("self-pay").textContent = formatCurrency(selfPay);
+    }
+
+    /**
+     * 初始化家属页签交互。
+     * @returns {void}
+     */
+    function initTabs() {
+      const tabs = document.querySelectorAll(".tab");
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((target) => target.classList.remove("active"));
+          tab.classList.add("active");
+        });
+      });
+    }
+
+    /**
+     * 初始化页面事件。
+     * @returns {void}
+     */
+    function init() {
+      const allInputs = document.querySelectorAll("input, select");
+      allInputs.forEach((element) => {
+        element.addEventListener("input", recalculate);
+        element.addEventListener("change", recalculate);
+      });
+      initTabs();
+      recalculate();
+    }
+
+    init();
+  </script>
+</body>
+</html>
