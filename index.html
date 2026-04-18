@@ -6,19 +6,19 @@
   <title>企业投保中心</title>
   <style>
     :root {
-      --bg-1: #090d1f;
-      --bg-2: #121a3e;
-      --bg-3: #231c52;
-      --card-bg: rgba(14, 18, 42, 0.68);
-      --card-border: rgba(145, 160, 255, 0.22);
-      --text-main: #eef3ff;
-      --text-muted: #a9b4d6;
-      --accent: #73f1ff;
-      --accent-2: #7f8dff;
-      --success: #44f0b8;
-      --warning: #ffb85c;
-      --danger: #ff6f8e;
-      --shadow: 0 24px 60px rgba(6, 8, 18, 0.45);
+      --bg-1: #f9fbff;
+      --bg-2: #f1f5ff;
+      --bg-3: #eef2ff;
+      --card-bg: rgba(255, 255, 255, 0.88);
+      --card-border: rgba(123, 141, 228, 0.22);
+      --text-main: #1d2b4d;
+      --text-muted: #60729d;
+      --accent: #1ac0de;
+      --accent-2: #6675ff;
+      --success: #1d9f72;
+      --warning: #e09b17;
+      --danger: #d84857;
+      --shadow: 0 16px 42px rgba(66, 84, 160, 0.14);
       --radius: 18px;
     }
 
@@ -32,9 +32,9 @@
       color: var(--text-main);
       min-height: 100vh;
       background:
-        radial-gradient(circle at 10% 20%, rgba(115, 241, 255, 0.2) 0%, rgba(9, 13, 31, 0) 28%),
-        radial-gradient(circle at 85% 10%, rgba(127, 141, 255, 0.25) 0%, rgba(9, 13, 31, 0) 35%),
-        linear-gradient(155deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
+        radial-gradient(circle at 8% 12%, rgba(26, 192, 222, 0.14) 0%, rgba(249, 251, 255, 0) 28%),
+        radial-gradient(circle at 88% 8%, rgba(102, 117, 255, 0.15) 0%, rgba(249, 251, 255, 0) 32%),
+        linear-gradient(155deg, var(--bg-1) 0%, var(--bg-2) 48%, var(--bg-3) 100%);
       padding: 32px 20px 40px;
     }
 
@@ -75,8 +75,8 @@
       margin-bottom: 24px;
       padding: 22px 24px;
       border-radius: var(--radius);
-      background: linear-gradient(130deg, rgba(115, 241, 255, 0.18), rgba(127, 141, 255, 0.18));
-      border: 1px solid rgba(140, 219, 255, 0.35);
+      background: linear-gradient(130deg, rgba(26, 192, 222, 0.14), rgba(102, 117, 255, 0.12));
+      border: 1px solid rgba(123, 141, 228, 0.28);
     }
 
     .hero h1 {
@@ -98,11 +98,11 @@
       align-items: center;
       gap: 8px;
       border-radius: 999px;
-      border: 1px solid rgba(121, 240, 255, 0.6);
-      color: #d5fbff;
+      border: 1px solid rgba(26, 192, 222, 0.38);
+      color: #1a4f76;
       font-size: 13px;
       padding: 8px 14px;
-      background: rgba(5, 148, 171, 0.26);
+      background: rgba(26, 192, 222, 0.16);
       white-space: nowrap;
     }
 
@@ -112,15 +112,15 @@
       height: 8px;
       border-radius: 50%;
       background: var(--success);
-      box-shadow: 0 0 0 6px rgba(68, 240, 184, 0.2);
+      box-shadow: 0 0 0 6px rgba(29, 159, 114, 0.2);
     }
 
     .section {
       margin-top: 26px;
       padding: 20px;
       border-radius: var(--radius);
-      border: 1px solid rgba(178, 193, 255, 0.18);
-      background: linear-gradient(160deg, rgba(35, 41, 79, 0.58), rgba(15, 20, 47, 0.64));
+      border: 1px solid rgba(123, 141, 228, 0.2);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(247, 250, 255, 0.9));
     }
 
     .section-header {
@@ -163,8 +163,8 @@
     .plan-card {
       border-radius: 14px;
       padding: 16px;
-      background: rgba(15, 20, 44, 0.82);
-      border: 1px solid rgba(187, 203, 255, 0.16);
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(123, 141, 228, 0.2);
       display: grid;
       gap: 12px;
     }
@@ -186,9 +186,9 @@
       font-size: 12px;
       border-radius: 999px;
       padding: 4px 10px;
-      border: 1px solid rgba(127, 141, 255, 0.45);
-      color: #d6dcff;
-      background: rgba(52, 63, 121, 0.4);
+      border: 1px solid rgba(102, 117, 255, 0.24);
+      color: #4757a8;
+      background: rgba(102, 117, 255, 0.1);
     }
 
     .row {
@@ -212,10 +212,10 @@
     .field select {
       width: 100%;
       color: var(--text-main);
-      border: 1px solid rgba(150, 169, 248, 0.3);
+      border: 1px solid rgba(123, 141, 228, 0.28);
       border-radius: 10px;
       padding: 9px 10px;
-      background: rgba(8, 13, 35, 0.76);
+      background: rgba(255, 255, 255, 0.96);
       outline: none;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
@@ -223,7 +223,7 @@
     .field input:focus,
     .field select:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(115, 241, 255, 0.18);
+      box-shadow: 0 0 0 3px rgba(26, 192, 222, 0.15);
     }
 
     .price-inline {
@@ -254,8 +254,8 @@
       align-items: center;
       padding: 11px 12px;
       border-radius: 12px;
-      border: 1px solid rgba(150, 169, 248, 0.22);
-      background: rgba(6, 10, 28, 0.5);
+      border: 1px solid rgba(123, 141, 228, 0.22);
+      background: rgba(246, 249, 255, 0.95);
     }
 
     .service-item input {
@@ -270,7 +270,7 @@
 
     .service-item em {
       font-style: normal;
-      color: #c8d6ff;
+      color: #50618f;
       font-size: 13px;
     }
 
@@ -278,15 +278,15 @@
       display: inline-flex;
       padding: 4px;
       border-radius: 999px;
-      background: rgba(8, 12, 31, 0.8);
-      border: 1px solid rgba(132, 150, 237, 0.35);
+      background: rgba(242, 246, 255, 0.95);
+      border: 1px solid rgba(123, 141, 228, 0.3);
       gap: 6px;
     }
 
     .tab {
       border: 0;
       border-radius: 999px;
-      color: #c7d2ff;
+      color: #5b6c99;
       background: transparent;
       padding: 6px 14px;
       cursor: pointer;
@@ -295,8 +295,8 @@
     }
 
     .tab.active {
-      color: #051029;
-      background: linear-gradient(160deg, var(--accent), #b4f8ff);
+      color: #ffffff;
+      background: linear-gradient(160deg, #2aa7ff, #6675ff);
       font-weight: 700;
     }
 
@@ -314,8 +314,8 @@
 
     .summary-block {
       border-radius: 14px;
-      border: 1px solid rgba(147, 164, 243, 0.3);
-      background: rgba(8, 12, 31, 0.8);
+      border: 1px solid rgba(123, 141, 228, 0.24);
+      background: rgba(255, 255, 255, 0.95);
       padding: 14px 14px 8px;
       margin-bottom: 12px;
     }
@@ -326,8 +326,8 @@
       align-items: center;
       padding: 8px 0;
       font-size: 14px;
-      color: #dce4ff;
-      border-bottom: 1px dashed rgba(145, 160, 255, 0.18);
+      color: var(--text-main);
+      border-bottom: 1px dashed rgba(123, 141, 228, 0.2);
     }
 
     .summary-row:last-child {
@@ -337,7 +337,7 @@
     .summary-row.total {
       font-size: 17px;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f1f45;
     }
 
     .value-danger {
@@ -371,21 +371,21 @@
     }
 
     .btn-primary {
-      color: #07112f;
-      background: linear-gradient(160deg, #8ff7ff, #9db2ff);
-      box-shadow: 0 12px 26px rgba(115, 241, 255, 0.24);
+      color: #ffffff;
+      background: linear-gradient(160deg, #2aa7ff, #6675ff);
+      box-shadow: 0 12px 26px rgba(102, 117, 255, 0.24);
     }
 
     .btn-secondary {
-      color: #d6e0ff;
-      background: rgba(48, 61, 120, 0.46);
-      border: 1px solid rgba(150, 169, 248, 0.28);
+      color: #42527f;
+      background: rgba(240, 244, 255, 0.9);
+      border: 1px solid rgba(123, 141, 228, 0.28);
     }
 
     .tip {
       margin-top: 12px;
       font-size: 12px;
-      color: #9fb0dd;
+      color: #6274a0;
       line-height: 1.55;
     }
 
